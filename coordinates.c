@@ -6,13 +6,12 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:36:14 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/06 16:37:48 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:18:43 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/fdf.h"
 #include "include/libft.h"
-#include <stdio.h>
 
 static int	count_line(char *l)
 {
@@ -102,25 +101,23 @@ static void	fill_tab(t_map map, int fd)
 	}
 }
 
-t_map	map_manager(char *path)
+void	map_manager(char *path, t_map *map)
 {
 	int		fd;
 	int		fd2;
-	t_map	map;
 
 	fd = open(path, O_RDONLY);
 	fd2 = open(path, O_RDONLY);
 	if (!fd || !fd2)
 		ft_exit("Problem with file\n");
-	map.count = count_tab(fd);
-	map.tab = malloc(map.count.i * sizeof(t_vector));
-	if (!map.tab)
+	map->count = count_tab(fd);
+	map->tab = malloc(map->count.i * sizeof(t_vector));
+	if (!map->tab)
 		ft_exit("Problem with size allocation\n");
-	map.stence = get_stence(map);
-	map.count.l = get_center(map, map.stence, 0);
-	map.count.m = get_center(map, map.stence, 1);
-	fill_tab(map, fd2);
+	map->stence = get_stence(map);
+	map->count.l = get_center(map, map->stence, 0);
+	map->count.m = get_center(map, map->stence, 1);
+	fill_tab(*map, fd2);
 	close(fd);
 	close(fd2);
-	return (map);
 }

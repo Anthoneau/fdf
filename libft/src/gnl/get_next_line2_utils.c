@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line2_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 15:54:08 by qalpesse          #+#    #+#             */
-/*   Updated: 2024/06/05 17:11:30 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:36:58 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ char	*ft_strjoin_mod(char *s1, char *s2)
 
 int	ft_findchar(char c, char *str)
 {
-	if (!str)
-		return (0);
 	while (*str)
 	{
 		if (*str == c)

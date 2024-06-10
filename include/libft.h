@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:24:10 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/06 15:33:16 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:23:31 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <limits.h>
 # include <stdarg.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 80
+#  define BUFFER_SIZE 8192
 # endif
 # ifdef BUFFER_SIZE
 #  if BUFFER_SIZE > MAX_INT

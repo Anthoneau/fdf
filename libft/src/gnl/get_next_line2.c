@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:48:01 by qalpesse          #+#    #+#             */
-/*   Updated: 2024/06/06 16:36:44 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/10 15:40:23 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,17 @@
 
 void	ft_buffer_modif(char *buffer)
 {
-	int	i;
-	int	j;
+	char	*buff1;
+	char	*buff2;
 
-	i = 0;
-	while (buffer[i] != '\n')
-		i++;
-	j = 0;
-	i += 1;
-	while (buffer[i])
-	{
-		buffer[j] = buffer[i];
-		i++;
-		j++;
-	}
-	buffer[j] = '\0';
+	buff1 = buffer;
+	buff2 = buffer;
+	while (*buff1 != '\n')
+		*buff1++;
+	*buff1++;
+	while (buff2)
+		*buff2++ = *buff1++;
+	*buff2 = '\0';
 }
 
 char	*ft_strverif(char *str)

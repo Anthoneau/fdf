@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:39:48 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/06 17:14:26 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:18:49 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,17 +72,30 @@ typedef struct s_map
 	t_vector	*tab;
 	t_ptw		count;
 	double		stence;
+	int			offset_x;
+	int			offset_y;
+	double		zoom;
 }	t_map;
+
+typedef struct s_win_and_map
+{
+	t_map	map;
+	t_win	win;
+	char	*path;
+}	t_wimap;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	ft_exit(const char *str);
-t_map	map_manager(char *path);
+void	map_manager(char *path, t_map *map);
 void	get_window(t_map map, t_win *stuff);
 void	l_draw(t_coords st_end, t_win stuff, int color);
 float	rad(void);
 double	min(double i, double j);
-double	get_stence(t_map map);
-double	get_center(t_map map, double stence, int ind);
+double	get_stence(t_map *map);
+double	get_center(t_map *map, double stence, int ind);
 void	get_perspective(t_map map, int j, int n, int i);
+int		ft_hook(int keycode, t_wimap *res);
+int		ft_red_cross(t_win *win);
+int		ft_scroll(int mouse_code, int x, int y, t_wimap *res);
 
 #endif
