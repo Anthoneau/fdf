@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 11:32:28 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/10 18:02:28 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/11 14:59:38 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	get_window(t_map map, t_win *win)
 			count_iter++;
 		i++;
 	}
-	mlx_put_image_to_window(win->mlx, win->mlx_win, win->img.img, 0, 0);
+	mlx_put_image_to_window(win->mlx, win->mlx_win, win->im.img, 0, 0);
 }

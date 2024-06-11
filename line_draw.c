@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:01:15 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/10 15:10:04 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:00:04 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void l_draw(t_coords co, t_win win, int color)
 		co.e = co.dx / 2;
 	else
 		co.e = -(co.dy) / 2;
-	draw_line(co, win.img, color);
+	draw_line(co, win.im, color);
 }

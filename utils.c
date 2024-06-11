@@ -6,16 +6,16 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:40:03 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/10 18:15:32 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/11 12:47:08 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/fdf.h"
 #include "include/libft.h"
 
-float	rad(void)
+float	rad(float a)
 {
-	return (26.57 * (M_PI / 180));
+	return (a * (M_PI / 180));
 }
 
 double	min(double i, double j)
@@ -60,8 +60,8 @@ void	get_perspective(t_map map, int j, int n, int i)
 	double	x;
 	double	y;
 
-	x = j * cos(rad()) + n * cos(rad() + 2) + map.tab[i].z * cos(rad() - 2);
-	y = j * sin(rad()) + n * sin(rad() + 2) + map.tab[i].z * sin(rad() - 2);
+	x = j * cos(rad(map.a)) + n * cos(rad(map.a) + 2) + map.tab[i].z * cos(rad(map.a) - 2);
+	y = j * sin(rad(map.a)) + n * sin(rad(map.a) + 2) + map.tab[i].z * sin(rad(map.a) - 2);
 	map.tab[i].x = map.count.l + x * map.stence;
 	map.tab[i].y = map.count.m + y * map.stence;
 }

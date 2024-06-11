@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:39:48 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/10 18:18:49 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:16:28 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct s_data
 typedef struct s_win
 {
 	void		*mlx;
-	t_data		img;
+	t_data		im;
 	void		*mlx_win;
 }	t_win;
 
@@ -75,6 +75,7 @@ typedef struct s_map
 	int			offset_x;
 	int			offset_y;
 	double		zoom;
+	float		a;
 }	t_map;
 
 typedef struct s_win_and_map
@@ -86,10 +87,11 @@ typedef struct s_win_and_map
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	ft_exit(const char *str);
+void	win_init(t_win *w, int i);
 void	map_manager(char *path, t_map *map);
 void	get_window(t_map map, t_win *stuff);
 void	l_draw(t_coords st_end, t_win stuff, int color);
-float	rad(void);
+float	rad(float a);
 double	min(double i, double j);
 double	get_stence(t_map *map);
 double	get_center(t_map *map, double stence, int ind);

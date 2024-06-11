@@ -6,7 +6,7 @@
 #    By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 09:39:13 by agoldber          #+#    #+#              #
-#    Updated: 2024/06/06 15:00:18 by agoldber         ###   ########.fr        #
+#    Updated: 2024/06/11 17:14:23 by agoldber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ FTPRINTF_DIR=	ft_printf/
 FTPRINTF	=	display ft_printf hexa_transfo print_string
 
 GNL_DIR		=	gnl/
-GNL			=	get_next_line get_next_line_utils
+GNL			=	get_next_line2
 
 FTADD_DIR	=	ft_add/
 FTADD		=	ft_swap

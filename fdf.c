@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:33:16 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/10 18:19:26 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:15:31 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,18 @@ void	ft_exit(const char *str)
 	exit(0);
 }
 
-static t_win	win_init(void)
+void	win_init(t_win *w, int i)
 {
-	t_win	s;
 	char	*title;
 
 	title = ft_strdup("\\/\\/[Fil De Fer]\\/\\/");
-	s.mlx = mlx_init();
-	s.mlx_win = mlx_new_window(s.mlx, WIN_LENGTH, WIN_HEIGHT, title);
-	s.img.img = mlx_new_image(s.mlx, WIN_LENGTH, WIN_HEIGHT);
-	s.img.adr = mlx_get_data_addr(s.img.img, &s.img.bpp, &s.img.len, &s.img.e);
-	return (s);
+	if (i)
+	{
+		w->mlx = mlx_init();
+		w->mlx_win = mlx_new_window(w->mlx, WIN_LENGTH, WIN_HEIGHT, title);
+	}
+	w->im.img = mlx_new_image(w->mlx, WIN_LENGTH, WIN_HEIGHT);
+	w->im.adr = mlx_get_data_addr(w->im.img, &w->im.bpp, &w->im.len, &w->im.e);
 }
 
 int	main(int ac, char **av)
@@ -41,9 +42,10 @@ int	main(int ac, char **av)
 		res.map.zoom = 1.00;
 		res.map.offset_x = 0;
 		res.map.offset_y = 0;
+		res.map.a = 26.57;
 		map_manager(av[1], &res.map);
 		res.path = av[1];
-		res.win = win_init();
+		win_init(&res.win, 1);
 		get_window(res.map, &res.win);
 		free(res.map.tab);
 		mlx_hook(res.win.mlx_win, 17, 0, (ft_red_cross), &res.win);

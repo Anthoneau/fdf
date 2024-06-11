@@ -259,7 +259,7 @@ int	main(int ac, char **av)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		printf("%s\n", line);
+		//printf("%s\n", line);
 		free(line);
 	}
 	while (1)
@@ -267,7 +267,7 @@ int	main(int ac, char **av)
 		line = get_next_line(fd2);
 		if (!line)
 			break ;
-		printf("%s\n", line);
+		//printf("%s\n", line);
 		free(line);
 	}
 	printf("END\n");
