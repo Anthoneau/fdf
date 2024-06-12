@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 13:48:11 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/11 15:41:07 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:16:44 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s && *s != (char)c)
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
 		s++;
-	if (*s != (char)c)
-		return (NULL);
-	else
-		return ((char *)s);
+	}
+	return (NULL);
 }

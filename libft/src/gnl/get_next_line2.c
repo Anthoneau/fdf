@@ -6,13 +6,11 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:48:01 by qalpesse          #+#    #+#             */
-/*   Updated: 2024/06/11 18:22:04 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:47:51 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <time.h>
-#include <stdio.h>
 
 static char	*append_buffer(char *buffer, char *mini_buffer)
 {
@@ -30,27 +28,22 @@ static char	*append_buffer(char *buffer, char *mini_buffer)
 
 static char	*read_file(int fd, char *big_buffer)
 {
-	char	*mini_buffer;
+	char	mini_buffer[BUFFER_SIZE + 1];
 	int		bytes;
 
 	if (!big_buffer)
-		return (NULL);
-	mini_buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!(mini_buffer))
 		return (NULL);
 	bytes = 1;
 	while (bytes > 0)
 	{
 		bytes = read(fd, mini_buffer, BUFFER_SIZE);
 		if (bytes < 0)
-			return (free(mini_buffer), free(big_buffer), NULL);
+			return (free(big_buffer), NULL);
 		mini_buffer[bytes] = '\0';
 		big_buffer = append_buffer(big_buffer, mini_buffer);
 		if (ft_strchr(big_buffer, '\n'))
 			break ;
 	}
-	free(mini_buffer);
-	mini_buffer = NULL;
 	return (big_buffer);
 }
 
@@ -110,10 +103,7 @@ char	*get_next_line(int fd)
 {
 	static char	*big_buffer[1024];
 	char		*line;
-	clock_t		start, end;
-	double	diff;
 
-	start = clock();
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!big_buffer[fd])
@@ -127,8 +117,5 @@ char	*get_next_line(int fd)
 	big_buffer[fd] = get_remaining(big_buffer[fd]);
 	if (!(line) || line[0] == '\0')
 		return (free(line), free(big_buffer[fd]), big_buffer[fd] = NULL, NULL);
-	end = clock();
-	diff = ((double)end - start) / CLOCKS_PER_SEC;
-	printf("%.2fs ", diff);
 	return (line);
 }
