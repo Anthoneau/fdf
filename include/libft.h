@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:24:10 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/11 17:14:36 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:53:58 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int		display_address(unsigned long ptr_val);
 int		display_hexa(int n, char c);
 //GNL
 char	*get_next_line(int fd);
+char	*ft_strjoin_mod(char *s1, char *s2);
+int		ft_findchar(char c, char *str);
 //ADDITIONAL FUNCTIONS
 void	ft_swap(int *i, int *j);
 #endif

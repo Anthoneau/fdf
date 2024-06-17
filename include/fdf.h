@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:39:48 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/12 12:39:26 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:16:28 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
-// # include <mlx.h>
+# include <mlx.h>
 # include <fcntl.h>
 # define WIN_LENGTH 1920
 # define WIN_HEIGHT 1080

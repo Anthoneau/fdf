@@ -6,116 +6,77 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:48:01 by qalpesse          #+#    #+#             */
-/*   Updated: 2024/06/12 12:47:51 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:51:24 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*append_buffer(char *buffer, char *mini_buffer)
+static void	ft_buffer_modif(char *buffer)
 {
-	char	*temp;
+	char	*b1;
+	char	*b2;
 
-	if (!mini_buffer)
-		return (NULL);
-	temp = ft_strjoin(buffer, mini_buffer);
-	if (!temp)
-		return (buffer);
-	free(buffer);
-	buffer = NULL;
-	return (temp);
+	b1 = buffer;
+	b2 = buffer;
+	while (*b1 && *b1 != '\n')
+		b1++;
+	b1++;
+	while (*b2)
+		*b2++ = *b1++;
+	*b2 = '\0';
 }
 
-static char	*read_file(int fd, char *big_buffer)
+static char	*ft_strverif(char *str)
 {
-	char	mini_buffer[BUFFER_SIZE + 1];
-	int		bytes;
-
-	if (!big_buffer)
+	if (!str)
 		return (NULL);
-	bytes = 1;
-	while (bytes > 0)
+	if (str[0] == '\0')
 	{
-		bytes = read(fd, mini_buffer, BUFFER_SIZE);
-		if (bytes < 0)
-			return (free(big_buffer), NULL);
-		mini_buffer[bytes] = '\0';
-		big_buffer = append_buffer(big_buffer, mini_buffer);
-		if (ft_strchr(big_buffer, '\n'))
-			break ;
+		free(str);
+		return (NULL);
 	}
-	return (big_buffer);
+	else
+		return (str);
 }
 
-static char	*get_line(char *buffer)
+static void	ft_bzero_mod(char *str, int size)
 {
-	char	*temp;
-	char	*res;
-	int		i;
+	int	i;
 
-	if (!buffer)
-		return (NULL);
-	if (*buffer == '\0')
-		return (ft_strdup(""));
 	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	i++;
-	temp = malloc((i + 1) * sizeof(char));
-	if (!temp)
-		return (NULL);
-	res = temp;
-	while (i--)
-		*temp++ = *buffer++;
-	*temp = '\0';
-	return (res);
-}
-
-static char	*get_remaining(char *buffer)
-{
-	char	*temp;
-	char	*res;
-	int		i;
-
-	if (!buffer)
-		return (NULL);
-	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	temp = malloc((ft_strlen(buffer) - i + 1) * sizeof(char));
-	if (!temp)
-		return (NULL);
-	res = temp;
-	if (buffer[i] == '\n')
-		i++;
-	while (buffer[i])
-		*temp++ = buffer[i++];
-	if (buffer)
+	while (i < size)
 	{
-		free(buffer);
-		buffer = NULL;
+		str[i] = '\0';
+		i++;
 	}
-	*temp = '\0';
-	return (res);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*big_buffer[1024];
-	char		*line;
+	char		*str;
+	char static	buffer[BUFFER_SIZE + 1];
+	int			rd;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if ((fd < 0 || fd > OPEN_MAX) || BUFFER_SIZE < 0)
 		return (NULL);
-	if (!big_buffer[fd])
-		big_buffer[fd] = ft_calloc(1, sizeof(char));
-	if (!ft_strchr(big_buffer[fd], '\n'))
-		big_buffer[fd] = read_file(fd, big_buffer[fd]);
-	if (!big_buffer[fd])
-		return (NULL);
-	line = NULL;
-	line = get_line(big_buffer[fd]);
-	big_buffer[fd] = get_remaining(big_buffer[fd]);
-	if (!(line) || line[0] == '\0')
-		return (free(line), free(big_buffer[fd]), big_buffer[fd] = NULL, NULL);
-	return (line);
+	rd = 1;
+	str = NULL;
+	while (rd > 0)
+	{
+		str = ft_strjoin_mod(str, buffer);
+		if (!str)
+			return (NULL);
+		if (ft_findchar('\n', buffer))
+		{
+			ft_buffer_modif(buffer);
+			break ;
+		}
+		rd = read(fd, buffer, BUFFER_SIZE);
+		if (rd != -1)
+			buffer[rd] = '\0';
+		else
+			return (ft_bzero_mod(buffer, BUFFER_SIZE + 1), free(str), NULL);
+	}
+	return (ft_strverif(str));
 }
