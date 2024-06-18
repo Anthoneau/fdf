@@ -6,7 +6,7 @@
 #    By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/06 15:00:22 by agoldber          #+#    #+#              #
-#    Updated: 2024/06/17 15:53:22 by agoldber         ###   ########.fr        #
+#    Updated: 2024/06/18 19:02:36 by agoldber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ COLOR_END	=	\033[0m
 
 #SOURCES
 
-FILES		=	fdf coordinates get_window hook line_draw utils
+FILES		=	fdf coordinates get_window hook line_draw utils retab
 
 SRCS		=	${addprefix ${SRCS_DIR}, ${addsuffix .c, ${FILES}}}
 OBJS		=	${addprefix ${OBJS_DIR}, ${addsuffix .o, ${FILES}}}

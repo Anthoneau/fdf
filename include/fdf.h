@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:39:48 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/17 16:10:33 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:00:53 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_point_to_window
 typedef struct s_map
 {
 	t_vector	*tab;
+	t_vector	*tab2;
 	t_ptw		count;
 	double		stence;
 	int			offset_x;
@@ -80,9 +81,9 @@ typedef struct s_map
 
 typedef struct s_win_and_map
 {
-	t_map	map;
-	t_win	win;
-	char	*path;
+	t_map		map;
+	t_win		win;
+	char		*path;
 }	t_wimap;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -97,7 +98,8 @@ double	get_stence(t_map *map);
 double	get_center(t_map *map, double stence, int ind);
 void	get_perspective(t_map map, int j, int n, int i);
 int		ft_hook(int keycode, t_wimap *res);
-int		ft_red_cross(t_win *win);
+int		ft_red_cross(t_wimap *res);
 int		ft_scroll(int mouse_code, int x, int y, t_wimap *res);
+void	retab(t_map *map);
 
 #endif

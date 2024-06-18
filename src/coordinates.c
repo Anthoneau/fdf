@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:36:14 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/17 16:39:24 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:58:25 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static int	grid_init(t_map map, char *line, int num, int i)
 		map.tab[i].c = ft_atoi_base(split[j]);
 		if (!(map.tab[i].c))
 			map.tab[i].c = ft_atoi_base("0xffffff");
+		map.tab2[i] = map.tab[i];
 		get_perspective(map, j++, num, i++);
 	}
 	while (j--)
@@ -113,6 +114,9 @@ void	map_manager(char *path, t_map *map)
 	map->count = count_tab(fd);
 	map->tab = malloc(map->count.i * sizeof(t_vector));
 	if (!map->tab)
+		ft_exit("Problem with size allocation\n");
+	map->tab2 = malloc(map->count.i * sizeof(t_vector));
+	if (!map->tab2)
 		ft_exit("Problem with size allocation\n");
 	map->stence = get_stence(map);
 	map->count.l = get_center(map, map->stence, 0);

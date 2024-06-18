@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:33:16 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/17 16:04:48 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:59:46 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ int	main(int ac, char **av)
 		res.path = av[1];
 		win_init(&res.win, 1);
 		get_window(res.map, &res.win);
-		free(res.map.tab);
-		mlx_hook(res.win.mlx_win, 17, 0, (ft_red_cross), &res.win);
+		mlx_hook(res.win.mlx_win, 17, 0, (ft_red_cross), &res);
 		mlx_hook(res.win.mlx_win, 2, 0, (ft_hook), &res);
 		mlx_mouse_hook(res.win.mlx_win, (ft_scroll), &res);
 		mlx_loop(res.win.mlx);
