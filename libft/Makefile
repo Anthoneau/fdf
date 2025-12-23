@@ -6,7 +6,7 @@
 #    By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/16 09:39:13 by agoldber          #+#    #+#              #
-#    Updated: 2024/06/17 13:53:06 by agoldber         ###   ########.fr        #
+#    Updated: 2024/09/14 18:29:29 by agoldber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,16 +78,36 @@ OBJS 		= 	${addprefix ${OBJS_DIR}, ${addsuffix .o, ${SRC_FILES}}}
 # ---------------------------------------------------------------------------- #
 
 OBJSF		=	.cache_exists
+TOTAL_FILES = $(words $(SRCS))
+
+# Fonction pour afficher une barre de progression
+define progress_bar
+	@COMPILED=$$(( $(COMPILED_FILES) + 1 )); \
+	PROGRESS=$$(($$COMPILED*50/$(TOTAL_FILES))); \
+	BAR=$$(for i in `seq 1 $$PROGRESS`; do printf "▇"; done); \
+	SPACES=$$(for i in `seq 1 $$((50 - $$PROGRESS))`; do printf " "; done); \
+	printf "\r${BBLUE}Compiling: [$$BAR$$SPACES] $$COMPILED/$(TOTAL_FILES) files${COLOR_END}"; \
+	echo ""; \
+	$(eval COMPILED_FILES=$$COMPILED)
+endef
 
 all:		${NAME}
 
 ${NAME}:	${OBJS}
 			@${AR} ${NAME} ${OBJS}
-			@echo "${BGREEN}Libft compiled!${COLOR_END}"
+			@echo "\n${BGREEN}Libft compiled!${COLOR_END}"
+
+COMPILED_FILES=0
 
 ${OBJS_DIR}%.o : ${SRCS_DIR}%.c | ${OBJSF}
-			@echo "${BPURPLE}Compiling: $< ${COLOR_END}"
-			@${CC} ${CFLAGS} ${INCLUDES} -c $< -o $@
+	@mkdir -p $(dir $@)
+	@${CC} ${CFLAGS} ${INCLUDES} -c $< -o $@
+	@PROGRESS=$$(echo "$$(find ${OBJS_DIR} -type f | wc -l | tr -d ' ') * 100 / ${TOTAL_FILES}" | bc); \
+	BAR=$$(for i in `eval echo {1..$$((PROGRESS / 2))}`; do printf "▇"; done); \
+	SPACES=$$(for i in `eval echo {1..50}`; do if [ $$i -gt $$((PROGRESS / 2)) ]; then printf " "; fi; done); \
+	CURRENT_FILES=$$(find ${OBJS_DIR} -type f | wc -l | tr -d ' '); \
+	printf "\r${BBLUE}Compiling: [$$BAR$$SPACES] $$PROGRESS%% ($$CURRENT_FILES/${TOTAL_FILES}) files${COLOR_END}"
+
 
 ${OBJSF}:
 			@mkdir -p ${OBJS_DIR}

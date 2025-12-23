@@ -6,17 +6,16 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:39:48 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/18 19:00:53 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/17 14:06:14 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# include <unistd.h>
-# include <stdlib.h>
 # include <math.h>
 # include <mlx.h>
 # include <fcntl.h>
+# include "libc.h"
 # define WIN_LENGTH 1920
 # define WIN_HEIGHT 1080
 # define ESCAPE 53
@@ -87,7 +86,7 @@ typedef struct s_win_and_map
 }	t_wimap;
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	ft_exit(const char *str);
+void	ft_exit(const char *str, int n);
 void	win_init(t_win *w, int i);
 void	map_manager(char *path, t_map *map);
 void	get_window(t_map map, t_win *stuff);
@@ -101,5 +100,6 @@ int		ft_hook(int keycode, t_wimap *res);
 int		ft_red_cross(t_wimap *res);
 int		ft_scroll(int mouse_code, int x, int y, t_wimap *res);
 void	retab(t_map *map);
+void	og_tab(t_map *map);
 
 #endif

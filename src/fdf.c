@@ -6,28 +6,26 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:33:16 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/18 18:59:46 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/17 14:10:14 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
-#include "../include/libft.h"
+#include "../includes/fdf.h"
+#include "../includes/libft.h"
 
-void	ft_exit(const char *str)
+void	ft_exit(const char *str, int n)
 {
 	ft_printf("%s", str);
-	exit(0);
+	exit(n);
 }
 
 void	win_init(t_win *w, int i)
 {
-	char	*title;
-
-	title = ft_strdup("\\/\\/[Fil De Fer]\\/\\/");
 	if (i)
 	{
 		w->mlx = mlx_init();
-		w->mlx_win = mlx_new_window(w->mlx, WIN_LENGTH, WIN_HEIGHT, title);
+		w->mlx_win = mlx_new_window(w->mlx, WIN_LENGTH, WIN_HEIGHT,
+				"\\/\\/[Fil De Fer]\\/\\/");
 	}
 	w->im.img = mlx_new_image(w->mlx, WIN_LENGTH, WIN_HEIGHT);
 	w->im.adr = mlx_get_data_addr(w->im.img, &w->im.bpp, &w->im.len, &w->im.e);

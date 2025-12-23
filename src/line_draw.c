@@ -6,11 +6,11 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 15:01:15 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/17 14:11:48 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/06/24 14:22:53 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "../includes/fdf.h"
 
 static void	draw_line(t_coords co, t_data img, int color)
 {

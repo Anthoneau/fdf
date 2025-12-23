@@ -6,12 +6,12 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:36:14 by agoldber          #+#    #+#             */
-/*   Updated: 2024/06/19 12:38:17 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/15 22:28:30 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
-#include "../include/libft.h"
+#include "../includes/fdf.h"
+#include "../includes/libft.h"
 
 static int	count_line(char *l)
 {
@@ -53,7 +53,7 @@ static t_ptw	count_tab(int fd)
 		if (count.k == 0)
 			count.k = count.i;
 		if (count.k == 0 || count.l != count.k)
-			ft_exit("Problem with the map\n");
+			ft_exit("Problem with map\n", 1);
 		count.j++;
 		free(line);
 	}
@@ -68,7 +68,7 @@ static int	grid_init(t_map map, char *line, int num, int i)
 	j = 0;
 	split = ft_split(line, ' ');
 	if (!split)
-		ft_exit("Problem with line");
+		ft_exit("Problem with line\n", 1);
 	while (split[j] != NULL)
 	{
 		map.tab[i].z = ft_atoi(split[j]);
@@ -80,6 +80,7 @@ static int	grid_init(t_map map, char *line, int num, int i)
 	}
 	while (j--)
 		free(split[j]);
+	free(split);
 	return (i);
 }
 
@@ -110,14 +111,14 @@ void	map_manager(char *path, t_map *map)
 	fd = open(path, O_RDONLY);
 	fd2 = open(path, O_RDONLY);
 	if (!fd || !fd2)
-		ft_exit("Problem with file\n");
+		ft_exit("Problem with file\n", 1);
 	map->count = count_tab(fd);
 	map->tab = malloc(map->count.i * sizeof(t_vector));
 	if (!map->tab)
-		ft_exit("Problem with size allocation\n");
+		ft_exit("Problem with size allocation\n", 1);
 	map->tab2 = malloc(map->count.i * sizeof(t_vector));
 	if (!map->tab2)
-		ft_exit("Problem with size allocation\n");
+		ft_exit("Problem with size allocation\n", 1);
 	map->stence = get_stence(map);
 	map->count.l = get_center(map, map->stence, 0);
 	map->count.m = get_center(map, map->stence, 1);
